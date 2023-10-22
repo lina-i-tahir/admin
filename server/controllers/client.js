@@ -6,21 +6,28 @@ import User from "../models/User.js";
 
 export const getProducts = async (req, res) => {
   try {
-    const products = await Product.find();
-
-    // combined with aggregrated func
-    const productsWithStats = await Promise.all(
-      // find prod stat
-      products.map(async (product) => {
-        const stat = await ProductStat.find({
-          productId: product._id,
-        });
-        return {
-          ...product._doc,
-          stat,
-        };
-      })
-    );
+    const productsWithStats = await Product.aggregate([
+      {
+        $addFields: {
+          _id: {
+            $toString: "$_id",
+          },
+        },
+      },
+      {
+        $lookup: {
+          from: "productstats",
+          localField: "_id",
+          foreignField: "productId",
+          as: "stat",
+        },
+      },
+      {
+        $unwind: {
+          path: "$stat",
+        },
+      },
+    ]);
 
     res.status(200).json(productsWithStats);
   } catch (error) {

@@ -43,6 +43,14 @@ app.use("/general", generalRoutes);
 app.use("/management", managementRoutes);
 app.use("/sales", salesRoutes);
 
+// Serve the React app's build directory
+app.use(express.static("https://admin-fe-vapu.onrender.com/"));
+
+// Catch-all route to serve the React app's main HTML file
+app.get("*", (req, res) => {
+  res.sendFile("https://admin-fe-vapu.onrender.com/");
+});
+
 // MONGOOSE SETUP
 const PORT = process.env.PORT || 9000;
 mongoose

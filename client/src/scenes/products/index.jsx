@@ -70,12 +70,18 @@ const Product = ({
           <CardContent>
             <Typography>id: {_id}</Typography>
             <Typography>Supply Left {supply}</Typography>
-            <Typography>
-              Yearly Sales This Year {stat[0].yearlySalesTotal}
-            </Typography>
-            <Typography>
-              Yearly Units Sold This Year {stat[0].yearlySalesTotal}
-            </Typography>
+            {stat.length > 0 ? (
+              <>
+                <Typography>
+                  Yearly Sales This Year {stat[0].yearlySalesTotal}
+                </Typography>
+                <Typography>
+                  Yearly Units Sold This Year {stat[0].yearlyUnitsSoldTotal}
+                </Typography>
+              </>
+            ) : (
+              <>No sales data available</>
+            )}
           </CardContent>
         </Collapse>
       </CardActions>
