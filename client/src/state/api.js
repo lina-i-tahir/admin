@@ -6,9 +6,8 @@ export const api = createApi({
   tagTypes: [
     "User",
     "Products",
-    "Customers",
-    "Transactions",
-    // "Geography",
+    "ProductStats",
+    "Suppliers",
     "Sales",
     "Admins",
     "Performance",
@@ -23,22 +22,20 @@ export const api = createApi({
       query: () => "client/products",
       providesTags: ["Products"],
     }),
-    getCustomers: build.query({
-      query: () => "client/customers",
-      providesTags: ["Customers"],
+    getProductStats: build.query({
+      query: (id) => `client/products/${id}`,
+      providesTags: ["ProductStats"],
     }),
-    getTransactions: build.query({
+
+    getSuppliers: build.query({
       query: ({ page, pageSize, sort, search }) => ({
-        url: "client/transactions",
+        url: "client/suppliers",
         method: "GET",
         params: { page, pageSize, sort, search },
       }),
-      providesTags: ["Transactions"],
+      providesTags: ["Suppliers"],
     }),
-    // getGeography: build.query({
-    //   query: () => "client/geography",
-    //   providesTags: ["Geography"],
-    // }),
+
     getSales: build.query({
       query: () => "sales/sales",
       providesTags: ["Sales"],
@@ -61,9 +58,8 @@ export const api = createApi({
 export const {
   useGetUserQuery,
   useGetProductsQuery,
-  useGetCustomersQuery,
-  useGetTransactionsQuery,
-  // useGetGeographyQuery,
+  useGetProductStatsQuery,
+  useGetSuppliersQuery,
   useGetSalesQuery,
   useGetAdminsQuery,
   useGetUserPerformanceQuery,

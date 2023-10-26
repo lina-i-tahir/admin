@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
-import { useGetTransactionsQuery } from "state/api";
+import { useGetSuppliersQuery } from "state/api";
 import Header from "components/Header";
 import { Box, useTheme } from "@mui/material";
 import DataGridCustomToolbar from "components/DataGridCustomToolbar";
 
-const Transactions = () => {
+const Suppliers = () => {
   const theme = useTheme();
 
   // values to send BE
@@ -18,7 +18,7 @@ const Transactions = () => {
   const [searchInput, setSearchInput] = useState("");
 
   // api request
-  const { data, isLoading } = useGetTransactionsQuery({
+  const { data, isLoading } = useGetSuppliersQuery({
     page,
     pageSize,
     sort: JSON.stringify(sort),
@@ -26,41 +26,39 @@ const Transactions = () => {
   });
   const columns = [
     {
+      // to edit createdAt on mongo?
+      field: "Name",
+      headerName: "Name",
+      flex: 1,
+    },
+    {
+      field: "SupplierID",
+      headerName: "Supplier ID",
+      flex: 0.5,
+    },
+    {
+      field: "Category",
+      headerName: "Category",
+      flex: 1,
+    },
+    {
       field: "_id",
       headerName: "ID",
       flex: 1,
     },
-    {
-      field: "userId",
-      headerName: "User ID",
-      flex: 0.5,
-    },
-    {
-      // to edit createdAt on mongo?
-      field: "createdAt",
-      headerName: "CreatedAt",
-      flex: 1,
-    },
-    {
-      // number of products this transaction has
-      field: "products",
-      headerName: "# of Products",
-      flex: 0.5,
-      renderCell: (params) => params.value.length,
-    },
 
-    {
-      // need to create the data as number, to sort as it's sorting by string instead of number
-      field: "cost",
-      headerName: "Cost",
-      flex: 1,
-      renderCell: (params) => `$${Number(params.value).toFixed(2)}`,
-    },
+    // {
+    //   // number of products this supplier has
+    //   field: "products",
+    //   headerName: "# of Products",
+    //   flex: 0.5,
+    //   renderCell: (params) => params.value.length,
+    // },
   ];
-  // console.log(("transactions", data));
+  // console.log(("suppliers", data));
   return (
     <Box m="1.5rem 2.5rem">
-      <Header title="TRANSACTION" subtitle="Entire list of transactions" />
+      <Header title="SUPPLIERS" subtitle="Entire list of suppliers" />
       <Box
         height="80vh"
         sx={{
@@ -91,7 +89,7 @@ const Transactions = () => {
         <DataGrid
           loading={isLoading || !data}
           getRowId={(row) => row._id}
-          rows={(data && data.transactions) || []}
+          rows={(data && data.suppliers) || []}
           columns={columns}
           rowCount={(data && data.total) || 0}
           rowsPerPageOptions={[20, 50, 100]}
@@ -113,4 +111,4 @@ const Transactions = () => {
   );
 };
 
-export default Transactions;
+export default Suppliers;
