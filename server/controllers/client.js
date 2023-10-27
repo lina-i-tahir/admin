@@ -11,6 +11,75 @@ export const getProducts = async (req, res) => {
     res.status(404).json({ message: error.message });
   }
 };
+
+// table
+// export const getProducts = async (req, res) => {
+//   try {
+//     const { page = 1, pageSize = 20, sort = null, search = "" } = req.query;
+//     const generateSort = () => {
+//       const sortParsed = JSON.parse(sort);
+//       const sortFormatted = {
+//         [sortParsed.field]: (sortParsed.sort = "asc" ? 1 : -1),
+//       };
+//       return sortFormatted;
+//     };
+//     const sortFormatted = Boolean(sort) ? generateSort() : {};
+
+//     const products = await Product.find({})
+//       .sort(sortFormatted)
+//       .skip(page * pageSize)
+//       .limit(pageSize);
+
+//     res.status(200).json(products);
+//   } catch (error) {
+//     res.status(404).json({ message: error.message });
+//   }
+// };
+
+// export const getProductsStat = async (req, res) => {
+//   const { id } = req.params; // Assuming the product ID is passed in the request parameters
+
+//   try {
+//     const result = await Product.aggregate([
+//       {
+//         $match: {
+//           ProductID: id, // Use the specified product ID
+//         },
+//       },
+//       {
+//         $lookup: {
+//           from: "productstats",
+//           localField: "ProductID",
+//           foreignField: "ProductID",
+//           as: "productStats",
+//         },
+//       },
+//       {
+//         $unwind: "$productStats",
+//       },
+//       {
+//         $project: {
+//           ProductID: 1,
+//           SupplierID: 1,
+//           Description: 1,
+//           UnitPrice: 1,
+//           UnitOfMeasurement: 1,
+//           YearlyMTDTotalSales: "$productStats.YearlyMTDTotalSales",
+//           YearlyMTDTotalUnits: "$productStats.YearlyMTDTotalUnits",
+//         },
+//       },
+//     ]);
+
+//     if (result.length > 0) {
+//       res.status(200).json(result[0]); // Return the first matching product
+//     } else {
+//       res.status(404).json({ message: "Product not found" });
+//     }
+//   } catch (error) {
+//     res.status(500).json({ message: error.message });
+//   }
+// };
+
 export const getProductsStat = async (req, res) => {
   try {
     const productStats = await ProductStat.find();

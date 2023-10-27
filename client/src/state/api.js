@@ -18,10 +18,21 @@ export const api = createApi({
       query: (id) => `general/user/${id}`,
       providesTags: ["User"],
     }),
+
+    // getProducts: build.query({
+    //   query: ({ page, pageSize, sort, search }) => ({
+    //     url: "client/products",
+    //     method: "GET",
+    //     params: { page, pageSize, sort, search },
+    //   }),
+    //   providesTags: ["Products"],
+    // }),
+
     getProducts: build.query({
       query: () => "client/products",
       providesTags: ["Products"],
     }),
+
     getProductStats: build.query({
       query: (id) => `client/products/${id}`,
       providesTags: ["ProductStats"],
