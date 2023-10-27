@@ -11,8 +11,8 @@ import {
   Collapse,
 } from "@mui/material";
 import { useGetProductStatsQuery } from "state/api";
-import DailyChart from "components/DailyChart";
 import Header from "components/Header";
+import Daily from "scenes/daily";
 
 const ProductStats = ({
   ProductID,
@@ -22,7 +22,6 @@ const ProductStats = ({
   dailyData,
 }) => {
   const theme = useTheme();
-  const [isExpanded, setIsExpanded] = useState(false);
 
   return (
     <Card
@@ -33,91 +32,36 @@ const ProductStats = ({
       }}
     >
       <CardContent>
-        <Typography
-          sx={{ fontSize: 14 }}
-          color={theme.palette.secondary[700]}
-          gutterBottom
-        >
-          Product ID: {ProductID}
+        <Typography variant="h5" component="div">
+          Qty available: {YearlyMTDTotalUnits}
         </Typography>
         <Typography variant="h5" component="div">
-          Yearly Sales: {YearlyMTDTotalSales}
+          Amount Purchase: $ {YearlyMTDTotalSales}
         </Typography>
-        <Typography sx={{ mb: "1.5rem" }} color={theme.palette.secondary[400]}>
-          Yearly Units Sold: {YearlyMTDTotalUnits}
-        </Typography>
+        <Daily ProductID={ProductID} />
       </CardContent>
-      <Button
-        variant="primary"
-        size="small"
-        onClick={() => setIsExpanded(!isExpanded)}
-      >
-        See More
-      </Button>
-      <CardActions>
-        <Collapse
-          in={isExpanded}
-          timeout="auto"
-          unmountOnExit
-          sx={{
-            color: theme.palette.neutral[300],
-          }}
-        >
-          <CardContent>
-            <Typography>Product ID: {ProductID}</Typography>
-            {monthlyData && monthlyData.length > 0 && (
-              <div>
-                <Typography>Monthly Data:</Typography>
-                <ul>
-                  {monthlyData.map((entry) => (
-                    <li key={entry.month}>
-                      Month: {entry.month}, Total Sales: {entry.totalSales},
-                      Total Units: {entry.totalUnits}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-            {dailyData && dailyData.length > 0 && (
-              <div>
-                <Typography>Daily Data:</Typography>
-                <ul>
-                  {dailyData.map((entry) => (
-                    <li key={entry.date}>
-                      Date: {entry.date}, Total Sales: {entry.totalSales}, Total
-                      Units: {entry.totalUnits}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-            {/* <DailyChart /> */}
-          </CardContent>
-        </Collapse>
-      </CardActions>
     </Card>
   );
 };
 
-const ProductsStats = () => {
-  const { data, isLoading } = useGetProductStatsQuery();
+const ProductsStats = ({ ProductID }) => {
+  const { data, isLoading } = useGetProductStatsQuery(ProductID);
   const isNonMobile = useMediaQuery("(min-width: 1000px");
 
   return (
     <Box m="1.5rem 2.5rem">
-      <Header title="PRODUCT STATS" subtitle="View product statistics" />
       {isLoading ? (
         <>Loading...</>
       ) : data && data.length > 0 ? (
         <Box
           mt="20px"
           display="grid"
-          gridTemplateColumns="repeat(4, minmax(0, 1fr))"
+          gridTemplateColumns="repeat(1, minmax(0, 1fr))"
           justifyContent="space-between"
           rowGap="20px"
-          columnGap="1.33%"
+          columnGap="1%"
           sx={{
-            "& > div": { gridColumn: isNonMobile ? undefined : "span 4" },
+            "& > div": { gridColumn: isNonMobile ? undefined : "span 10" },
           }}
         >
           {data.map((product) => (

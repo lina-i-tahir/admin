@@ -34,7 +34,7 @@ export const api = createApi({
     }),
 
     getProductStats: build.query({
-      query: (id) => `client/products/${id}`,
+      query: (ProductID) => `client/products/${ProductID}`,
       providesTags: ["ProductStats"],
     }),
 
