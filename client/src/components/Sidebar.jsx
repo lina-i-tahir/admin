@@ -30,6 +30,7 @@ import {
 } from "@mui/icons-material";
 import SpaceDashboardIcon from "@mui/icons-material/SpaceDashboard";
 
+import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import FlexBetween from "./FlexBetween";
@@ -86,7 +87,6 @@ const navItems = [
   //   icon: <TrendingUpOutlined />,
   // },
 ];
-
 const Sidebar = ({
   user,
   drawerWidth,
@@ -103,6 +103,7 @@ const Sidebar = ({
     setActive(pathname.substring(1));
   }, [pathname]);
 
+  const userDetails = useSelector((state) => state.global.userDetails);
   return (
     <Box component="nav">
       {isSidebarOpen && (
@@ -217,7 +218,7 @@ const Sidebar = ({
                   fontSize="0.9rem"
                   sx={{ color: theme.palette.secondary[100] }}
                 >
-                  {user.name}
+                  {userDetails.name}
                 </Typography>
                 {/* <Typography
                   fontSize="0.8rem"
