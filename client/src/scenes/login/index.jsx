@@ -18,11 +18,13 @@ import SpaceDashboardIcon from "@mui/icons-material/SpaceDashboard";
 import FlexBetween from "components/FlexBetween";
 import { useDispatch } from "react-redux";
 import { setUserDetails } from "state";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const theme = useTheme();
   const [user, setUser] = useState();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const isNonMobile = useMediaQuery("(min-width: 1000px");
 
   return (
@@ -70,8 +72,9 @@ const Login = () => {
                       setUserDetails({ name: userName, email: userEmail })
                     );
                     console.log(userEmail);
+                    navigate(`/dashboard`);
 
-                    window.location.href = "/dashboard";
+                    // window.location.href = "/dashboard";
                   }}
                   onError={() => {
                     console.log("Login Failed");
