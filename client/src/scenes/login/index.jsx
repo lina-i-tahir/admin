@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { GoogleLogin } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
@@ -16,9 +16,13 @@ import {
 } from "@mui/material";
 import SpaceDashboardIcon from "@mui/icons-material/SpaceDashboard";
 import FlexBetween from "components/FlexBetween";
+import { useDispatch } from "react-redux";
+import { setUserDetails } from "state";
 
 const Login = () => {
   const theme = useTheme();
+  const [user, setUser] = useState();
+  const dispatch = useDispatch();
   const isNonMobile = useMediaQuery("(min-width: 1000px");
 
   return (
@@ -55,10 +59,19 @@ const Login = () => {
                   shape="pill"
                   width={"350px"}
                   onSuccess={(credentialResponse) => {
-                    const details = jwtDecode(credentialResponse.credential);
-                    console.log(details);
-                    console.log(credentialResponse);
-                    window.location.href = "/dashboard"; // Redirect using the window object
+                    const userDetails = jwtDecode(
+                      credentialResponse.credential
+                    );
+
+                    console.log("details:", userDetails);
+                    const userName = userDetails.name;
+                    const userEmail = userDetails.email;
+                    dispatch(
+                      setUserDetails({ name: userName, email: userEmail })
+                    );
+                    console.log(userEmail);
+
+                    window.location.href = "/dashboard";
                   }}
                   onError={() => {
                     console.log("Login Failed");
