@@ -16,7 +16,7 @@ import Breakdown from "scenes/breakdown";
 import Admin from "scenes/admin";
 import Performance from "scenes/performance";
 import Suppliers from "scenes/suppliers";
-import ProtectedRoute from "components/ProtectedRoute";
+// import ProtectedRoute from "components/ProtectedRoute";
 
 function App() {
   const mode = useSelector((state) => state.global.mode);
@@ -29,21 +29,21 @@ function App() {
           <CssBaseline />
           <Routes>
             <Route path="/" element={<Login />} />
-            <Route element={<ProtectedRoute />}>
-              <Route element={<Layout />}>
-                <Route path="/dashboard" element={<Dashboard />} />
-                <Route path="/products" element={<Products />} />
-                <Route path="/products/:id" element={<ProductsStats />} />
-                <Route path="/suppliers" element={<Suppliers />} />
-                <Route path="/overview" element={<Overview />} />
-                <Route path="/daily" element={<Daily />} />
-                <Route path="/monthly" element={<Monthly />} />
-                <Route path="/breakdown" element={<Breakdown />} />
-                <Route path="/admin" element={<Admin />} />
-                <Route path="/performance" element={<Performance />} />
-                <Route />
-              </Route>
+            {/* <Route element={<ProtectedRoute />}> */}
+            <Route element={<Layout />}>
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/products" element={<Products />} />
+              <Route path="/products/:id" element={<ProductsStats />} />
+              <Route path="/suppliers" element={<Suppliers />} />
+              <Route path="/overview" element={<Overview />} />
+              <Route path="/daily" element={<Daily />} />
+              <Route path="/monthly" element={<Monthly />} />
+              <Route path="/breakdown" element={<Breakdown />} />
+              <Route path="/admin" element={<Admin />} />
+              <Route path="/performance" element={<Performance />} />
+              <Route />
             </Route>
+            {/* </Route> */}
           </Routes>
         </ThemeProvider>
       </BrowserRouter>
