@@ -62,7 +62,7 @@ const Dashboard = () => {
       <FlexBetween>
         <Header title="DASHBOARD" subtitle="Welcome to your dashboard" />
 
-        <Box>
+        {/* <Box>
           <Button
             sx={{
               backgroundColor: theme.palette.secondary.light,
@@ -75,7 +75,7 @@ const Dashboard = () => {
             <DownloadOutlined sx={{ mr: "10px" }} />
             Download Reports
           </Button>
-        </Box>
+        </Box> */}
       </FlexBetween>
 
       <Box
@@ -90,6 +90,10 @@ const Dashboard = () => {
       >
         {/* ROW 1 */}
         <StatBox
+          sx={{
+            borderRadius: "10rem",
+            boxShadow: "0.15rem 0.2rem 0.15rem 0.1rem rgba(0,0,0, .8)",
+          }}
           title="Total Customers"
           value={data && data.totalCustomers}
           increase="+14%"
@@ -138,7 +142,10 @@ const Dashboard = () => {
           description="Since last month"
           icon={
             <Traffic
-              sx={{ color: theme.palette.secondary[300], fontSize: "26px" }}
+              sx={{
+                color: theme.palette.secondary[300],
+                fontSize: "26px",
+              }}
             />
           }
         />
@@ -171,6 +178,8 @@ const Dashboard = () => {
             "& .MuiDataGrid-toolbarContainer .MuiButton-text": {
               color: `${theme.palette.secondary[200]} !important`,
             },
+            borderRadius: "0.5rem",
+            boxShadow: "0.15rem 0.2rem 0.15rem 0.1rem rgba(0,0,0, .8)",
           }}
         >
           <DataGrid
@@ -185,7 +194,10 @@ const Dashboard = () => {
           gridRow="span 3"
           backgroundColor={theme.palette.background.alt}
           p="1.5rem"
-          borderRadius="0.55rem"
+          sx={{
+            borderRadius: "0.5rem",
+            boxShadow: "0.15rem 0.2rem 0.15rem 0.1rem rgba(0,0,0, .8)",
+          }}
         >
           <Typography variant="h6" sx={{ color: theme.palette.secondary[100] }}>
             Sales By Category

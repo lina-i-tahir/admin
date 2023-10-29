@@ -72,7 +72,6 @@ const Products = () => {
           },
           "& .MuiDataGrid-cell": {
             borderBottom: "none",
-
             cursor: "pointer", // Set the cursor to pointer
           },
           "& .MuiDataGrid-columnHeaders": {
@@ -91,6 +90,8 @@ const Products = () => {
           "& .MuiDataGrid-toolbarContainer .MuiButton-text": {
             color: `${theme.palette.secondary[200]} !important`,
           },
+          borderRadius: ".5rem",
+          boxShadow: "0.15rem 0.2rem 0.15rem 0.1rem rgba(0,0,0, .8)",
         }}
       >
         <DataGrid
