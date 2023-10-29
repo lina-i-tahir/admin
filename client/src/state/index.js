@@ -7,7 +7,7 @@ const initialState = {
     email: "",
   },
 
-  userId: "63701cc1f03239c72c000184", // Setting the initial user ID to an empty string
+  userId: "63701cc1f03239b7f700000e", // Setting the initial user ID to an empty string
 };
 
 export const globalSlice = createSlice({
