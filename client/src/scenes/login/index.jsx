@@ -68,10 +68,15 @@ const Login = () => {
                     console.log("details:", userDetails);
                     const userName = userDetails.name;
                     const userEmail = userDetails.email;
+                    const userPicture = userDetails.picture;
                     dispatch(
-                      setUserDetails({ name: userName, email: userEmail })
+                      setUserDetails({
+                        name: userName,
+                        email: userEmail,
+                        picture: userPicture,
+                      })
                     );
-                    console.log(userEmail);
+                    // console.log(userPicture);
                     navigate(`/dashboard`);
 
                     // window.location.href = "/dashboard";

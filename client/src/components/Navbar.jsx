@@ -3,14 +3,12 @@ import {
   LightModeOutlined,
   DarkModeOutlined,
   Menu as MenuIcon,
-  Search,
-  SettingsOutlined,
   ArrowDropDownOutlined,
 } from "@mui/icons-material";
 import FlexBetween from "components/FlexBetween";
 import { useDispatch, useSelector } from "react-redux";
 import { setMode } from "state";
-import profileImage from "assets/profile.jpeg";
+
 import { googleLogout } from "@react-oauth/google";
 import {
   AppBar,
@@ -93,7 +91,7 @@ const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
               <Box
                 component="img"
                 alt="profile"
-                src={profileImage}
+                src={userDetails.picture}
                 height="32px"
                 width="32px"
                 borderRadius="50%"

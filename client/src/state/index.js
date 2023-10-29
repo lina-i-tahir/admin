@@ -18,9 +18,10 @@ export const globalSlice = createSlice({
       state.mode = state.mode === "light" ? "dark" : "light";
     },
     setUserDetails: (state, action) => {
-      const { name, email } = action.payload;
+      const { name, email, picture } = action.payload;
       state.userDetails.name = name;
       state.userDetails.email = email;
+      state.userDetails.picture = picture;
     },
     setUserId: (state, action) => {
       state.userId = action.payload;
