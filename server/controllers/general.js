@@ -1,6 +1,5 @@
 import User from "../models/User.js";
 import OverallStat from "../models/OverallStat.js";
-
 import Suppliers from "../models/Suppliers.js";
 
 export const getUser = async (req, res) => {
@@ -21,7 +20,7 @@ export const getDashboardStats = async (req, res) => {
     const currentDay = "2021-11-15";
 
     /* Recent Suppliers */
-    const suppliers = await Supplier.find().limit(50).sort({ createdOn: -1 });
+    const suppliers = await Suppliers.find().limit(50).sort({ createdOn: -1 });
 
     /* Overall Stats */
     const overallStat = await OverallStat.find({ year: currentYear });

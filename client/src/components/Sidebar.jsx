@@ -28,6 +28,8 @@ import {
   TrendingUpOutlined,
   PieChartOutlined,
 } from "@mui/icons-material";
+import SpaceDashboardIcon from "@mui/icons-material/SpaceDashboard";
+
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import FlexBetween from "./FlexBetween";
@@ -38,10 +40,10 @@ const navItems = [
     text: "Dashboard",
     icon: <HomeOutlined />,
   },
-  {
-    text: "Client Facing",
-    icon: null,
-  },
+  // {
+  //   text: "Client Facing",
+  //   icon: null,
+  // },
   {
     text: "Products",
     icon: <ShoppingCartOutlined />,
@@ -51,38 +53,38 @@ const navItems = [
     icon: <Groups2Outlined />,
   },
 
-  {
-    text: "Sales",
-    icon: null,
-  },
-  {
-    text: "Overview",
-    icon: <PointOfSaleOutlined />,
-  },
-  {
-    text: "Daily",
-    icon: <TodayOutlined />,
-  },
-  {
-    text: "Monthly",
-    icon: <CalendarMonthOutlined />,
-  },
-  {
-    text: "Breakdown",
-    icon: <PieChartOutlined />,
-  },
-  {
-    text: "Management",
-    icon: null,
-  },
-  {
-    text: "Admin",
-    icon: <AdminPanelSettingsOutlined />,
-  },
-  {
-    text: "Performance",
-    icon: <TrendingUpOutlined />,
-  },
+  // {
+  //   text: "Sales",
+  //   icon: null,
+  // },
+  // {
+  //   text: "Overview",
+  //   icon: <PointOfSaleOutlined />,
+  // },
+  // {
+  //   text: "Daily",
+  //   icon: <TodayOutlined />,
+  // },
+  // {
+  //   text: "Monthly",
+  //   icon: <CalendarMonthOutlined />,
+  // },
+  // {
+  //   text: "Breakdown",
+  //   icon: <PieChartOutlined />,
+  // },
+  // {
+  //   text: "Management",
+  //   icon: null,
+  // },
+  // {
+  //   text: "Admin",
+  //   icon: <AdminPanelSettingsOutlined />,
+  // },
+  // {
+  //   text: "Performance",
+  //   icon: <TrendingUpOutlined />,
+  // },
 ];
 
 const Sidebar = ({
@@ -123,8 +125,19 @@ const Sidebar = ({
           <Box width="100%">
             <Box m="1.5rem 2rem 2rem 3rem">
               <FlexBetween color={theme.palette.secondary.main}>
-                <Box display="flex" alignItems="center" gap="0.5rem">
-                  <Typography variant="h4" fontWeight="bold">
+                <Box
+                  onClick={() => {
+                    navigate(`/dashboard`);
+                    console.log("clicked logo");
+                  }}
+                  display="flex"
+                  alignItems="center"
+                  gap="0.75rem"
+                  sx={{ cursor: "pointer" }}
+                  color={theme.palette.secondary[100]}
+                >
+                  <SpaceDashboardIcon sx={{ fontSize: "35px" }} />
+                  <Typography variant="h4" fontSize="20px">
                     SpaceHub
                   </Typography>
                 </Box>
@@ -206,19 +219,19 @@ const Sidebar = ({
                 >
                   {user.name}
                 </Typography>
-                <Typography
+                {/* <Typography
                   fontSize="0.8rem"
                   sx={{ color: theme.palette.secondary[200] }}
                 >
                   {user.occupation}
-                </Typography>
+                </Typography> */}
               </Box>
-              <SettingsOutlined
+              {/* <SettingsOutlined
                 sx={{
                   color: theme.palette.secondary[300],
                   fontSize: "25px ",
                 }}
-              />
+              /> */}
             </FlexBetween>
           </Box>
         </Drawer>

@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import Navbar from "components/Navbar";
 import Sidebar from "components/Sidebar";
 import { useGetUserQuery } from "state/api";
+// import { useGetUserByEmailQuery } from "state/api";
 
 const Layout = () => {
   const isNonMobile = useMediaQuery("(min-width: 600px)");
@@ -12,9 +13,11 @@ const Layout = () => {
 
   // Grab userId from Redux Toolkit's state
   const userId = useSelector((state) => state.global.userId);
+  // const userEmail = useSelector((state) => state.global.userEmail);
 
   // Fetch user data
   const { data, error, isLoading } = useGetUserQuery(userId);
+  // const { data, error, isLoading } = useGetUserByEmailQuery(userEmail);
   console.log(data);
 
   if (isLoading) {

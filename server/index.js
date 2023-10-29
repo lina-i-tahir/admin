@@ -28,24 +28,6 @@ import dataProductStat from "./data/testPS.js";
 // import OverallStat from "./models/OverallStat.js";
 // import AffliateStat from "./models/AffliateStat.js";
 
-// GOOGLE OAUTH
-// const { OAuth2Client } = require("google-auth-library");
-// app.post("'/", async function (req, res, next) {
-//   // trigger G OAuth
-//   res.header("Access-Control-Allow-Origin", "http://localhost:5001");
-//   res.header("Refferer-Policy", "no-referrer-when-downgrade");
-//   // redirect URL
-
-//   const redirectUrl = "http://127.0.0.1:3000/oauth";
-//   const oAuth2Client = new OAuth2Client(
-//     process.env.CLIENT_ID,
-//     process.env.CLIENT_SECRET,
-//     redirectUrl
-//   );
-
-//   const authorizeUrl = oAuth2Client
-// });
-
 // CONFIGURATION
 dotenv.config();
 const app = express();
@@ -58,7 +40,6 @@ app.use(cors());
 
 // ROUTES
 app.use("/client", clientRoutes);
-// app.use("/supplier", supplierRoutes)
 app.use("/general", generalRoutes);
 app.use("/management", managementRoutes);
 app.use("/sales", salesRoutes);

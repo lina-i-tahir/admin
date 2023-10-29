@@ -20,6 +20,7 @@ import BreakdownChart from "components/BreakdownChart";
 import OverviewChart from "components/OverviewChart";
 import { useGetDashboardQuery } from "state/api";
 import StatBox from "components/StatBox";
+import Products from "scenes/products";
 
 const Dashboard = () => {
   const theme = useTheme();
@@ -28,32 +29,25 @@ const Dashboard = () => {
 
   const columns = [
     {
+      // to edit createdAt on mongo?
+      field: "Name",
+      headerName: "Name",
+      flex: 1,
+    },
+    {
+      field: "SupplierID",
+      headerName: "Supplier ID",
+      flex: 0.5,
+    },
+    {
+      field: "Category",
+      headerName: "Category",
+      flex: 1,
+    },
+    {
       field: "_id",
       headerName: "ID",
       flex: 1,
-    },
-    {
-      field: "userId",
-      headerName: "User ID",
-      flex: 1,
-    },
-    {
-      field: "createdAt",
-      headerName: "CreatedAt",
-      flex: 1,
-    },
-    {
-      field: "products",
-      headerName: "# of Products",
-      flex: 0.5,
-      sortable: false,
-      renderCell: (params) => params.value.length,
-    },
-    {
-      field: "cost",
-      headerName: "Cost",
-      flex: 1,
-      renderCell: (params) => `$${Number(params.value).toFixed(2)}`,
     },
   ];
 
@@ -62,7 +56,7 @@ const Dashboard = () => {
       <FlexBetween>
         <Header title="DASHBOARD" subtitle="Welcome to your dashboard" />
 
-        <Box>
+        {/* <Box>
           <Button
             sx={{
               backgroundColor: theme.palette.secondary.light,
@@ -75,7 +69,7 @@ const Dashboard = () => {
             <DownloadOutlined sx={{ mr: "10px" }} />
             Download Reports
           </Button>
-        </Box>
+        </Box> */}
       </FlexBetween>
 
       <Box
@@ -89,8 +83,35 @@ const Dashboard = () => {
         }}
       >
         {/* ROW 1 */}
-        <StatBox
-          title="Total Customers"
+        <Box
+          gridColumn="span 4"
+          gridRow="span 3"
+          backgroundColor={theme.palette.background.alt}
+          p="1.5rem"
+          sx={{
+            borderRadius: "0.5rem",
+            boxShadow: "0.15rem 0.2rem 0.15rem 0.1rem rgba(0,0,0, .8)",
+          }}
+        >
+          <Typography variant="h6" sx={{ color: theme.palette.secondary[100] }}>
+            Sales By Category
+          </Typography>
+          <BreakdownChart isDashboard={true} />
+          <Typography
+            p="0 0.6rem"
+            fontSize="0.8rem"
+            sx={{ color: theme.palette.secondary[200] }}
+          >
+            Breakdown of real states and information via category for revenue
+            made for this year and total sales.
+          </Typography>
+        </Box>
+        {/* <StatBox
+          sx={{
+            borderRadius: "10rem",
+            boxShadow: "0.15rem 0.2rem 0.15rem 0.1rem rgba(0,0,0, .8)",
+          }}
+          title="Total Products"
           value={data && data.totalCustomers}
           increase="+14%"
           description="Since last month"
@@ -138,10 +159,13 @@ const Dashboard = () => {
           description="Since last month"
           icon={
             <Traffic
-              sx={{ color: theme.palette.secondary[300], fontSize: "26px" }}
+              sx={{
+                color: theme.palette.secondary[300],
+                fontSize: "26px",
+              }}
             />
           }
-        />
+        /> */}
 
         {/* ROW 2 */}
         <Box
@@ -150,7 +174,6 @@ const Dashboard = () => {
           sx={{
             "& .MuiDataGrid-root": {
               border: "none",
-              borderRadius: "5rem",
             },
             "& .MuiDataGrid-cell": {
               borderBottom: "none",
@@ -161,7 +184,7 @@ const Dashboard = () => {
               borderBottom: "none",
             },
             "& .MuiDataGrid-virtualScroller": {
-              backgroundColor: theme.palette.background.alt,
+              backgroundColor: theme.palette.primary.light,
             },
             "& .MuiDataGrid-footerContainer": {
               backgroundColor: theme.palette.background.alt,
@@ -171,6 +194,8 @@ const Dashboard = () => {
             "& .MuiDataGrid-toolbarContainer .MuiButton-text": {
               color: `${theme.palette.secondary[200]} !important`,
             },
+            borderRadius: ".5rem",
+            boxShadow: "0.15rem 0.2rem 0.15rem 0.1rem rgba(0,0,0, .8)",
           }}
         >
           <DataGrid
@@ -178,27 +203,9 @@ const Dashboard = () => {
             getRowId={(row) => row._id}
             rows={(data && data.suppliers) || []}
             columns={columns}
+            rowCount={(data && data.total) || 0}
+            rowsPerPageOptions={[20, 50, 100]}
           />
-        </Box>
-        <Box
-          gridColumn="span 4"
-          gridRow="span 3"
-          backgroundColor={theme.palette.background.alt}
-          p="1.5rem"
-          borderRadius="0.55rem"
-        >
-          <Typography variant="h6" sx={{ color: theme.palette.secondary[100] }}>
-            Sales By Category
-          </Typography>
-          <BreakdownChart isDashboard={true} />
-          <Typography
-            p="0 0.6rem"
-            fontSize="0.8rem"
-            sx={{ color: theme.palette.secondary[200] }}
-          >
-            Breakdown of real states and information via category for revenue
-            made for this year and total sales.
-          </Typography>
         </Box>
       </Box>
     </Box>
