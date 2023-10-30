@@ -11,8 +11,14 @@ const Products = () => {
   const { data, isLoading } = useGetProductsQuery();
   console.log("data", data);
   const handleRowClick = (params) => {
-    // Navigate to the product details page when a row is clicked
-    navigate(`/products/${params.id}`);
+    // Check if params contains the correct property for productID
+    const productId = params.row.ProductID; // assuming 'ProductID' is the correct property name
+
+    if (productId) {
+      navigate(`/products/${productId}/stats`);
+    } else {
+      console.error("ProductID not found in params:", params);
+    }
   };
 
   const columns = [
