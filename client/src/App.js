@@ -17,6 +17,7 @@ import Admin from "scenes/admin";
 import Performance from "scenes/performance";
 import Suppliers from "scenes/suppliers";
 import ProtectedRoute from "components/ProtectedRoute";
+import Error from "components/Error";
 
 function App() {
   const mode = useSelector((state) => state.global.mode);
@@ -29,6 +30,7 @@ function App() {
           <CssBaseline />
           <Routes>
             <Route path="/" element={<Login />} />
+            <Route path="*" element={<Error />} />
             <Route element={<ProtectedRoute />}>
               <Route element={<Layout />}>
                 <Route path="/dashboard" element={<Dashboard />} />
@@ -44,6 +46,7 @@ function App() {
                 <Route path="/breakdown" element={<Breakdown />} />
                 <Route path="/admin" element={<Admin />} />
                 <Route path="/performance" element={<Performance />} />
+
                 <Route />
               </Route>
             </Route>

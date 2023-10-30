@@ -201,7 +201,7 @@ const Sidebar = ({
           </Box>
 
           <Box position="absolute" bottom="2rem">
-            <Divider />
+            <Divider variant="middle" />
             <FlexBetween textTransform="none" gap="1rem" m="1.5rem 2rem 0 3rem">
               <Box
                 component="img"
