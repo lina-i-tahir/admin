@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { GoogleLogin } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
+// import { ToastContainer, toast } from "react-toastify";
+// import "react-toastify/dist/ReactToastify.css";
+
 import {
   Box,
   Card,
@@ -26,6 +29,8 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const isNonMobile = useMediaQuery("(min-width: 1000px");
+
+  // const notify = () => toast("This is a toast notification !");
 
   return (
     <Box
@@ -77,8 +82,8 @@ const Login = () => {
                       })
                     );
                     // console.log(userPicture);
-                    navigate(`/dashboard`);
 
+                    navigate(`/dashboard`);
                     // window.location.href = "/dashboard";
                   }}
                   onError={() => {
