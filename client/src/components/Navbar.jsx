@@ -3,15 +3,14 @@ import {
   LightModeOutlined,
   DarkModeOutlined,
   Menu as MenuIcon,
-  Search,
-  SettingsOutlined,
   ArrowDropDownOutlined,
 } from "@mui/icons-material";
 import FlexBetween from "components/FlexBetween";
 import { useDispatch, useSelector } from "react-redux";
 import { setMode } from "state";
-import profileImage from "assets/profile.jpeg";
+
 import { googleLogout } from "@react-oauth/google";
+
 import {
   AppBar,
   Button,
@@ -37,7 +36,14 @@ const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
   const isOpen = Boolean(anchorEl);
   const handleClick = (event) => setAnchorEl(event.currentTarget);
   const handleClose = () => setAnchorEl(null);
-  const handleLogout = () => googleLogout();
+
+  // const handleLogout = () => {
+  //   // Perform the Google logout
+  //   googleLogout();
+  // };
+
+  // Perform any other logout actions or state updates in your application
+  // For example, resetting the user's data, etc.
 
   return (
     <AppBar
@@ -93,7 +99,7 @@ const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
               <Box
                 component="img"
                 alt="profile"
-                src={profileImage}
+                src={userDetails.picture}
                 height="32px"
                 width="32px"
                 borderRadius="50%"
@@ -125,7 +131,7 @@ const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
               onClose={handleClose}
               anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
             >
-              <MenuItem onClick={handleLogout}>Log Out</MenuItem>
+              <MenuItem onClick={googleLogout()}>Log Out</MenuItem>
             </Menu>
           </FlexBetween>
         </FlexBetween>

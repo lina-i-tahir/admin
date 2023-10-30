@@ -60,18 +60,23 @@ const Login = () => {
                   theme="filled_black"
                   shape="pill"
                   width={"350px"}
-                  onSuccess={(credentialResponse) => {
+                  onSuccess={(credentialResponse, tokenResponse) => {
                     const userDetails = jwtDecode(
                       credentialResponse.credential
                     );
-
-                    console.log("details:", userDetails);
+                    console.log("token", tokenResponse);
+                    console.log("userdetails:", userDetails);
                     const userName = userDetails.name;
                     const userEmail = userDetails.email;
+                    const userPicture = userDetails.picture;
                     dispatch(
-                      setUserDetails({ name: userName, email: userEmail })
+                      setUserDetails({
+                        name: userName,
+                        email: userEmail,
+                        picture: userPicture,
+                      })
                     );
-                    console.log(userEmail);
+                    // console.log(userPicture);
                     navigate(`/dashboard`);
 
                     // window.location.href = "/dashboard";
