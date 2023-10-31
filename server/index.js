@@ -10,9 +10,9 @@ import generalRoutes from "./routes/general.js";
 import managementRoutes from "./routes/management.js";
 import salesRoutes from "./routes/sales.js";
 import fileUpload from "express-fileupload";
+import userRoute from "./routes/userRoute.js";
 
 // data imports
-
 import dataProductStat from "./data/testPS.js";
 // import User from "./models/User.js";
 // import {
@@ -54,15 +54,8 @@ app.get("*", (req, res) => {
 });
 
 // FILE UPLOAD
-// const server = createServer(app);
-
-app.use(fileUpload());
-app.get("/upload", function (req, res) {
-  res.sendFile(__dirname + "/index.html");
-});
-// server.listen(8080, () => {
-//   console.log("Server started on port 8080");
-// });
+// const userRoute = require("./routes/userRoute");
+app.use("/", userRoute);
 
 // MONGOOSE SETUP
 const PORT = process.env.PORT || 9000;
