@@ -18,6 +18,7 @@ import Performance from "scenes/performance";
 import Suppliers from "scenes/suppliers";
 import ProtectedRoute from "components/ProtectedRoute";
 import Error from "components/Error";
+import Upload from "scenes/upload";
 
 function App() {
   const mode = useSelector((state) => state.global.mode);
@@ -39,6 +40,7 @@ function App() {
                   path="/products/:productID/stats"
                   element={<ProductsStats />}
                 />
+                <Route path="/upload" element={<Upload />} />
                 <Route path="/suppliers" element={<Suppliers />} />
                 <Route path="/overview" element={<Overview />} />
                 <Route path="/daily" element={<Daily />} />
