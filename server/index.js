@@ -9,7 +9,6 @@ import clientRoutes from "./routes/client.js";
 import generalRoutes from "./routes/general.js";
 import managementRoutes from "./routes/management.js";
 import salesRoutes from "./routes/sales.js";
-import fileUpload from "express-fileupload";
 import userRoute from "./routes/userRoute.js";
 
 // data imports
@@ -54,7 +53,6 @@ app.get("*", (req, res) => {
 });
 
 // FILE UPLOAD
-// const userRoute = require("./routes/userRoute");
 app.use("/", userRoute);
 
 // MONGOOSE SETUP

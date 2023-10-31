@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-var userCsvSchema = new mongoose.Schema({
+const userCsvSchema = new mongoose.Schema({
   name: {
     type: String,
   },
@@ -12,4 +12,5 @@ var userCsvSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("UserCsv", userCsvSchema);
+const userCsv = mongoose.model("userCsv", userCsvSchema);
+export default userCsv;
