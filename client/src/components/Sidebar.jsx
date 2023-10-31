@@ -28,23 +28,19 @@ import {
   TrendingUpOutlined,
   PieChartOutlined,
 } from "@mui/icons-material";
+import FileUploadOutlinedIcon from "@mui/icons-material/FileUploadOutlined";
 import SpaceDashboardIcon from "@mui/icons-material/SpaceDashboard";
 
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import FlexBetween from "./FlexBetween";
-import profileImage from "assets/profile.jpeg";
 
 const navItems = [
   {
     text: "Dashboard",
     icon: <HomeOutlined />,
   },
-  // {
-  //   text: "Client Facing",
-  //   icon: null,
-  // },
   {
     text: "Products",
     icon: <ShoppingCartOutlined />,
@@ -54,10 +50,10 @@ const navItems = [
     icon: <Groups2Outlined />,
   },
 
-  // {
-  //   text: "Sales",
-  //   icon: null,
-  // },
+  {
+    text: "Upload",
+    icon: <FileUploadOutlinedIcon />,
+  },
   // {
   //   text: "Overview",
   //   icon: <PointOfSaleOutlined />,
