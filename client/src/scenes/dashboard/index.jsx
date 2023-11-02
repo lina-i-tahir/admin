@@ -131,9 +131,17 @@ const Dashboard = () => {
             boxShadow: "0.15rem 0.2rem 0.15rem 0.1rem rgba(0,0,0, .8)",
           }}
         >
-          <Typography variant="h5" sx={{ color: theme.palette.secondary[100] }}>
-            Products
-          </Typography>
+          <FlexBetween>
+            <Typography
+              variant="h5"
+              sx={{ color: theme.palette.secondary[100] }}
+            >
+              Products
+            </Typography>
+            <ShoppingCartOutlined
+              sx={{ color: theme.palette.secondary[300], fontSize: "26px" }}
+            />
+          </FlexBetween>
 
           <Products isDashboard={true} />
         </Box>

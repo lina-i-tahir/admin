@@ -145,7 +145,8 @@ const Sidebar = ({
                 )}
               </FlexBetween>
             </Box>
-            <List>
+
+            <List sx={{ mt: "6rem" }}>
               {navItems.map(({ text, icon }) => {
                 if (!icon) {
                   return (
@@ -157,13 +158,20 @@ const Sidebar = ({
                 const lcText = text.toLowerCase();
 
                 return (
-                  <ListItem key={text} disablePadding>
+                  <ListItem
+                    key={text}
+                    disablePadding
+                    sx={{
+                      height: "100px",
+                    }}
+                  >
                     <ListItemButton
                       onClick={() => {
                         navigate(`/${lcText}`);
                         setActive(lcText);
                       }}
                       sx={{
+                        height: "70px",
                         backgroundColor:
                           active === lcText
                             ? theme.palette.secondary[500]
@@ -195,9 +203,10 @@ const Sidebar = ({
               })}
             </List>
           </Box>
-
-          <Box position="absolute" bottom="2rem">
+          <Box position="flex" mt="23rem">
             <Divider variant="middle" />
+          </Box>
+          <Box position="absolute" bottom="2rem">
             <FlexBetween textTransform="none" gap="1rem" m="1.5rem 2rem 0 3rem">
               <Box
                 component="img"
