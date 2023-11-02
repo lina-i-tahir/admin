@@ -10,10 +10,11 @@ const Products = () => {
   const navigate = useNavigate();
   const { data, isLoading } = useGetProductsQuery();
   console.log("data", data);
-  const handleRowClick = (params) => {
-    // Check if params contains the correct property for productID
-    const productId = params.row.ProductID; // assuming 'ProductID' is the correct property name
 
+  const numberOfProducts = data ? data.length : 0;
+
+  const handleRowClick = (params) => {
+    const productId = params.row.ProductID;
     if (productId) {
       navigate(`/products/${productId}/stats`);
     } else {
@@ -26,18 +27,6 @@ const Products = () => {
       field: "ProductID",
       headerName: "Product ID",
       flex: 0.5,
-      // renderCell: (params) => {
-      //   // Handle the click event on ProductID
-      //   const handleProductClick = () => {
-      //     navigate(`/products/${params.row.ProductID}`);
-      //   };
-
-      //   return (
-      //     <div style={{ cursor: "pointer" }} onClick={handleProductClick}>
-      //       {params.value}
-      //     </div>
-      //   );
-      // },
     },
     {
       field: "SupplierID",
@@ -47,6 +36,11 @@ const Products = () => {
     {
       field: "Brand",
       headerName: "Brand",
+      flex: 0.5,
+    },
+    {
+      field: "SupplierCategory",
+      headerName: "Category",
       flex: 0.5,
     },
     {
@@ -68,7 +62,10 @@ const Products = () => {
 
   return (
     <Box m="1.5rem 2.5rem">
-      <Header title="PRODUCTS" subtitle="Inventory of Products" />
+      <Header
+        title="PRODUCTS"
+        subtitle={`No of Products: ${numberOfProducts}`}
+      />
       <Box
         mt="40px"
         height="75vh"

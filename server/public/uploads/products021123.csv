@@ -1,0 +1,8 @@
+ProductID,SupplierID,Category,Brand,Description,UnitOfMeasurement,ItemPrice,UnitPrice
+MPB-1kg,CMC,Beverage,,Meating Place Blend 1kg,kg,,36
+MPB-250g,CMC,Beverage,,Meating Place Blend 250g,250g,,9.5
+EC-1kg,CMC,Beverage,,Espresso Clean - 1kg,kg,,0
+1.7081,CMC,Beverage,,1.7081 Basket Thick 1.2mm,pcs,,3
+MLV-P150200,MLV,,,Pouch 150 x 200 mm 80 my transparent,pcs,,0.075
+MLV-P180310,MLV,,,Pouch 180 x 310 mm 80 my transparent,pcs,,0.105
+MLV-P260330,MLV,,,Pouch 260 x 330 mm 80 my transparent,PCS,,0.15

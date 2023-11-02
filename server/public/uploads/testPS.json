@@ -1,4 +1,4 @@
-export const dataProductStat = [
+ 
   {
     _id: "6538b94319e24c4ace5bcf85",
     ProductID: "CP-PPIC500",
@@ -51,6 +51,4 @@ export const dataProductStat = [
       { date: "2021-01-31", totalSales: 0, totalUnits: 0 },
     ],
   },
-];
 
-export default dataProductStat;
