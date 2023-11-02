@@ -5,7 +5,7 @@ import Header from "components/Header";
 import { DataGrid } from "@mui/x-data-grid";
 import { useNavigate } from "react-router-dom";
 
-const Products = () => {
+const Products = ({ isDashboard = false }) => {
   const theme = useTheme();
   const navigate = useNavigate();
   const { data, isLoading } = useGetProductsQuery();
@@ -62,13 +62,18 @@ const Products = () => {
 
   return (
     <Box m="1.5rem 2.5rem">
-      <Header
-        title="PRODUCTS"
-        subtitle={`No of Products: ${numberOfProducts}`}
-      />
+      {!isDashboard && (
+        <Header
+          title="PRODUCTS"
+          subtitle={`No of Products: ${numberOfProducts}`}
+        />
+      )}
+
       <Box
-        mt="40px"
-        height="75vh"
+        mt="20px"
+        height={isDashboard ? "600px" : "75vh"}
+        width={undefined}
+        minwidth={isDashboard ? "325px" : undefined}
         sx={{
           "& .MuiDataGrid-root": {
             border: "none",

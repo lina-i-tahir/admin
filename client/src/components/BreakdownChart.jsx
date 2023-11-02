@@ -42,6 +42,7 @@ const BreakdownChart = ({ isDashboard = false }) => {
       minHeight={isDashboard ? "325px" : undefined}
       minWidth={isDashboard ? "325px" : undefined}
       position="relative"
+      justifyContent={"center"}
     >
       <ResponsivePie
         data={formattedData}
@@ -81,7 +82,7 @@ const BreakdownChart = ({ isDashboard = false }) => {
         colors={{ datum: "data.color" }}
         margin={
           isDashboard
-            ? { top: 40, right: 80, bottom: 100, left: 50 }
+            ? { top: 40, right: 80, bottom: 100, left: 80 }
             : { top: 40, right: 80, bottom: 80, left: 80 }
         }
         sortByValue={true}
@@ -127,7 +128,7 @@ const BreakdownChart = ({ isDashboard = false }) => {
           },
         ]}
       />
-      <Box
+      {/* <Box
         position="absolute"
         top="50%"
         left="50%"
@@ -139,8 +140,8 @@ const BreakdownChart = ({ isDashboard = false }) => {
             ? "translate(-75%, -170%)"
             : "translate(-50%, -100%)",
         }}
-      >
-        {/* <Typography variant="h6">
+      > */}
+      {/* <Typography variant="h6">
           <br />
           {!isDashboard && "Total Product:"} <br />
           {Object.values(productCountByCategory).reduce(
@@ -148,7 +149,7 @@ const BreakdownChart = ({ isDashboard = false }) => {
             0
           )}
         </Typography> */}
-      </Box>
+      {/* </Box> */}
     </Box>
   );
 };

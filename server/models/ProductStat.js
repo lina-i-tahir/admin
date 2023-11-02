@@ -3,20 +3,18 @@ import mongoose from "mongoose";
 const ProductStatSchema = new mongoose.Schema(
   {
     ProductID: String,
-    YearlyMTDTotalSales: Number,
-    YearlyMTDTotalUnits: Number,
     year: Number,
     monthlyData: [
       {
         month: String,
-        totalSales: Number,
+        totalPurchase: Number,
         totalUnits: Number,
       },
     ],
     dailyData: [
       {
         date: String,
-        totalSales: Number,
+        totalPurchase: Number,
         totalUnits: Number,
       },
     ],

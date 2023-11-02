@@ -14,14 +14,24 @@ import { useGetProductStatsQuery } from "state/api";
 import Header from "components/Header";
 import Daily from "scenes/daily";
 
-const ProductStats = ({
-  ProductID,
-  YearlyMTDTotalSales,
-  YearlyMTDTotalUnits,
-  monthlyData,
-  dailyData,
-}) => {
+const ProductStats = ({ ProductID, dailyData }) => {
   const theme = useTheme();
+  const calculateProductStats = (dailyData) => {
+    let totalUnits = 0;
+    let totalPurchase = 0;
+
+    dailyData.forEach((day) => {
+      totalUnits += day.totalUnits;
+      totalPurchase += day.totalPurchase;
+    });
+
+    return {
+      totalUnits,
+      totalPurchase,
+    };
+  };
+
+  const productStats = calculateProductStats(dailyData);
 
   return (
     <Card
@@ -33,10 +43,10 @@ const ProductStats = ({
     >
       <CardContent>
         <Typography variant="h5" component="div">
-          Qty available: {YearlyMTDTotalUnits}
+          Qty available: {productStats.totalUnits}{" "}
         </Typography>
         <Typography variant="h5" component="div">
-          Amount Purchase: $ {YearlyMTDTotalSales}
+          Amount Purchase: $ {productStats.totalPurchase}
         </Typography>
         <Daily ProductID={ProductID} />
       </CardContent>
@@ -47,6 +57,7 @@ const ProductStats = ({
 const ProductsStats = ({ ProductID }) => {
   const { data, isLoading } = useGetProductStatsQuery(ProductID);
   const isNonMobile = useMediaQuery("(min-width: 1000px");
+  console.log(data);
 
   return (
     <Box m="1.5rem 2.5rem">
@@ -68,9 +79,6 @@ const ProductsStats = ({ ProductID }) => {
             <ProductStats
               key={product.ProductID}
               ProductID={product.ProductID}
-              YearlyMTDTotalSales={product.YearlyMTDTotalSales}
-              YearlyMTDTotalUnits={product.YearlyMTDTotalUnits}
-              monthlyData={product.monthlyData}
               dailyData={product.dailyData}
             />
           ))}
@@ -239,7 +247,7 @@ export default ProductsStats;
 
 //     const { dailyData } = data;
 //     const totalSalesLine = {
-//       id: "totalSales",
+//       iPurchase",
 //       color: theme.palette.secondary.main,
 //       data: [],
 //     };

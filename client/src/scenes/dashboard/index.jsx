@@ -3,7 +3,8 @@ import FlexBetween from "components/FlexBetween";
 import Header from "components/Header";
 import {
   DownloadOutlined,
-  Email,
+  CategoryOutlined,
+  ShoppingCartOutlined,
   PointOfSale,
   PersonAdd,
   Traffic,
@@ -14,65 +15,55 @@ import {
   Typography,
   useTheme,
   useMediaQuery,
+  Container,
 } from "@mui/material";
-import { DataGrid } from "@mui/x-data-grid";
 import BreakdownChart from "components/BreakdownChart";
-import OverviewChart from "components/OverviewChart";
+// import OverviewChart from "components/OverviewChart";
 import { useGetDashboardQuery } from "state/api";
+import { useGetProductsQuery } from "state/api";
 import StatBox from "components/StatBox";
 import Products from "scenes/products";
 
 const Dashboard = () => {
   const theme = useTheme();
   const isNonMediumScreens = useMediaQuery("(min-width: 1200px)");
-  const { data, isLoading } = useGetDashboardQuery();
+  const { data: dashboardData, isLoading: isLoadingDashboard } =
+    useGetDashboardQuery();
+  const { data: productData, isLoading: isLoadingProduct } =
+    useGetProductsQuery();
 
   const currentDate = new Date();
   const formattedDate = currentDate.toLocaleString();
+  const numberOfProducts = productData ? productData.length : 0;
 
-  const columns = [
-    {
-      // to edit createdAt on mongo?
-      field: "Name",
-      headerName: "Name",
-      flex: 1,
-    },
-    {
-      field: "SupplierID",
-      headerName: "Supplier ID",
-      flex: 0.5,
-    },
-    {
-      field: "Category",
-      headerName: "Category",
-      flex: 1,
-    },
-    {
-      field: "_id",
-      headerName: "ID",
-      flex: 1,
-    },
-  ];
+  // const columns = [
+  //   {
+  //     // to edit createdAt on mongo?
+  //     field: "Name",
+  //     headerName: "Name",
+  //     flex: 1,
+  //   },
+  //   {
+  //     field: "SupplierID",
+  //     headerName: "Supplier ID",
+  //     flex: 0.5,
+  //   },
+  //   {
+  //     field: "Category",
+  //     headerName: "Category",
+  //     flex: 1,
+  //   },
+  //   {
+  //     field: "_id",
+  //     headerName: "ID",
+  //     flex: 1,
+  //   },
+  // ];
 
   return (
     <Box m="1.5rem 2.5rem">
       <FlexBetween>
         <Header title="AT A GLANCE" subtitle={`as of ${formattedDate}`} />
-
-        {/* <Box>
-          <Button
-            sx={{
-              backgroundColor: theme.palette.secondary.light,
-              color: theme.palette.background.alt,
-              fontSize: "14px",
-              fontWeight: "bold",
-              padding: "10px 20px",
-            }}
-          >
-            <DownloadOutlined sx={{ mr: "10px" }} />
-            Download Reports
-          </Button>
-        </Box> */}
       </FlexBetween>
 
       <Box
@@ -86,6 +77,7 @@ const Dashboard = () => {
         }}
       >
         {/* ROW 1 */}
+
         <Box
           gridColumn="span 4"
           gridRow="span 3"
@@ -96,120 +88,151 @@ const Dashboard = () => {
             boxShadow: "0.15rem 0.2rem 0.15rem 0.1rem rgba(0,0,0, .8)",
           }}
         >
-          <Typography variant="h6" sx={{ color: theme.palette.secondary[100] }}>
-            Products By Category
-          </Typography>
-          <BreakdownChart isDashboard={true} />
-          <Typography
-            p="0 0.6rem"
-            fontSize="0.8rem"
-            sx={{ color: theme.palette.secondary[200] }}
+          <FlexBetween>
+            <Typography
+              variant="h5"
+              sx={{ color: theme.palette.secondary[100] }}
+            >
+              Products By Category
+            </Typography>
+            <CategoryOutlined
+              sx={{ color: theme.palette.secondary[300], fontSize: "26px" }}
+            />
+          </FlexBetween>
+          <Box
+            sx={{
+              justifyContent: "center",
+              width: "100%",
+              marginTop: "20px",
+            }}
           >
-            updated as of {formattedDate}
-          </Typography>
+            <BreakdownChart isDashboard={true} />
+          </Box>
+          <Box>
+            <Typography
+              variant="h6"
+              mt="13px"
+              display="flex"
+              justifyContent="right"
+              sx={{ color: theme.palette.secondary[300] }}
+            >
+              as of {formattedDate}
+            </Typography>
+          </Box>
         </Box>
-        {/* <StatBox
+
+        <Box
+          gridColumn="span 8"
+          gridRow="span 4"
+          backgroundColor={theme.palette.background.alt}
+          p="1.5rem"
+          sx={{
+            borderRadius: "0.5rem",
+            boxShadow: "0.15rem 0.2rem 0.15rem 0.1rem rgba(0,0,0, .8)",
+          }}
+        >
+          <Typography variant="h5" sx={{ color: theme.palette.secondary[100] }}>
+            Products
+          </Typography>
+
+          <Products isDashboard={true} />
+        </Box>
+        <StatBox
           sx={{
             borderRadius: "10rem",
             boxShadow: "0.15rem 0.2rem 0.15rem 0.1rem rgba(0,0,0, .8)",
           }}
           title="Total Products"
-          value={data && data.totalCustomers}
+          value={`${numberOfProducts}`}
           increase="+14%"
-          description="Since last month"
+          description="as of "
           icon={
-            <Email
+            <ShoppingCartOutlined
               sx={{ color: theme.palette.secondary[300], fontSize: "26px" }}
             />
           }
         />
-        <StatBox
-          title="Sales Today"
-          value={data && data.todayStats.totalSales}
-          increase="+21%"
-          description="Since last month"
-          icon={
-            <PointOfSale
-              sx={{ color: theme.palette.secondary[300], fontSize: "26px" }}
-            />
-          }
-        />
-        <Box
-          gridColumn="span 8"
-          gridRow="span 2"
-          backgroundColor={theme.palette.background.alt}
-          p="1rem"
-          borderRadius="0.55rem"
-        >
-          <OverviewChart view="sales" isDashboard={true} />
-        </Box>
-        <StatBox
-          title="Monthly Sales"
-          value={data && data.thisMonthStats.totalSales}
-          increase="+5%"
-          description="Since last month"
-          icon={
-            <PersonAdd
-              sx={{ color: theme.palette.secondary[300], fontSize: "26px" }}
-            />
-          }
-        />
-        <StatBox
-          title="Yearly Sales"
-          value={data && data.yearlySalesTotal}
-          increase="+43%"
-          description="Since last month"
-          icon={
-            <Traffic
-              sx={{
-                color: theme.palette.secondary[300],
-                fontSize: "26px",
-              }}
-            />
-          }
-        /> */}
-
-        {/* ROW 2 */}
-        <Box
-          gridColumn="span 8"
-          gridRow="span 3"
-          sx={{
-            "& .MuiDataGrid-root": {
-              border: "none",
-            },
-            "& .MuiDataGrid-cell": {
-              borderBottom: "none",
-            },
-            "& .MuiDataGrid-columnHeaders": {
-              backgroundColor: theme.palette.background.alt,
-              color: theme.palette.secondary[100],
-              borderBottom: "none",
-            },
-            "& .MuiDataGrid-virtualScroller": {
-              backgroundColor: theme.palette.primary.light,
-            },
-            "& .MuiDataGrid-footerContainer": {
-              backgroundColor: theme.palette.background.alt,
-              color: theme.palette.secondary[100],
-              borderTop: "none",
-            },
-            "& .MuiDataGrid-toolbarContainer .MuiButton-text": {
-              color: `${theme.palette.secondary[200]} !important`,
-            },
-            borderRadius: ".5rem",
-            boxShadow: "0.15rem 0.2rem 0.15rem 0.1rem rgba(0,0,0, .8)",
-          }}
-        >
-          <DataGrid
-            loading={isLoading || !data}
-            getRowId={(row) => row._id}
-            rows={(data && data.suppliers) || []}
-            columns={columns}
-            rowCount={(data && data.total) || 0}
-            rowsPerPageOptions={[20, 50, 100]}
-          />
-        </Box>
       </Box>
+
+      {/* end of Row 1 */}
+      {/* <StatBox
+        title="Sales Today"
+        value={data && data.todayStats.totalSales}
+        increase="+21%"
+        description="Since last month"
+        icon={
+          <PointOfSale
+            sx={{ color: theme.palette.secondary[300], fontSize: "26px" }}
+          />
+        }
+      />
+
+      <StatBox
+        title="Monthly Sales"
+        value={data && data.thisMonthStats.totalSales}
+        increase="+5%"
+        description="Since last month"
+        icon={
+          <PersonAdd
+            sx={{ color: theme.palette.secondary[300], fontSize: "26px" }}
+          />
+        }
+      />
+      <StatBox
+        title="Yearly Sales"
+        value={data && data.yearlySalesTotal}
+        increase="+43%"
+        description="Since last month"
+        icon={
+          <Traffic
+            sx={{
+              color: theme.palette.secondary[300],
+              fontSize: "26px",
+            }}
+          />
+        }
+      /> */}
+
+      {/* ROW 2 */}
+      {/* <Box
+        gridColumn="span 8"
+        gridRow="span 3"
+        sx={{
+          "& .MuiDataGrid-root": {
+            border: "none",
+          },
+          "& .MuiDataGrid-cell": {
+            borderBottom: "none",
+          },
+          "& .MuiDataGrid-columnHeaders": {
+            backgroundColor: theme.palette.background.alt,
+            color: theme.palette.secondary[100],
+            borderBottom: "none",
+          },
+          "& .MuiDataGrid-virtualScroller": {
+            backgroundColor: theme.palette.primary.light,
+          },
+          "& .MuiDataGrid-footerContainer": {
+            backgroundColor: theme.palette.background.alt,
+            color: theme.palette.secondary[100],
+            borderTop: "none",
+          },
+          "& .MuiDataGrid-toolbarContainer .MuiButton-text": {
+            color: `${theme.palette.secondary[200]} !important`,
+          },
+          borderRadius: ".5rem",
+          boxShadow: "0.15rem 0.2rem 0.15rem 0.1rem rgba(0,0,0, .8)",
+        }}
+      >
+        <DataGrid
+          loading={isLoading || !data}
+          getRowId={(row) => row._id}
+          rows={(data && data.suppliers) || []}
+          columns={columns}
+          rowCount={(data && data.total) || 0}
+          rowsPerPageOptions={[20, 50, 100]}
+        />
+      </Box> */}
     </Box>
   );
 };

@@ -74,7 +74,7 @@ mongoose
     // ProductStat.insertMany(dataProductStat);
     // User.insertMany(dataUser);
     // Product.insertMany(dataProduct);
-    // ProductStat.insertMany(dataProductStat);
+
     // Transaction.insertMany(dataTransaction);
     // OverallStat.insertMany(dataOverallStat);
     // AffliateStat.insertMany(dataAffiliateStat);
