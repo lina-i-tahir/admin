@@ -203,11 +203,21 @@ const Sidebar = ({
               })}
             </List>
           </Box>
-          <Box position="flex" mt="22rem">
-            <Divider variant="middle" />
-          </Box>
-          <Box position="absolute" bottom="2rem">
-            <FlexBetween textTransform="none" gap="1rem" m="1.5rem 2rem 0 3rem">
+
+
+          <Box position="absolute" bottom="2rem" justifyContent="center">
+            <Box>
+              <Divider
+                variant="middle"
+                // sx={{ position: "flex", marginRight: "100px" }}
+              />
+            </Box>
+            <FlexBetween
+              textTransform="none"
+              gap="1rem"
+              m="1.5rem 4.8rem 0 3rem"
+            >
+
               <Box
                 component="img"
                 alt="profile"
