@@ -14,7 +14,7 @@ import suppliersURoute from "./routes/suppliersURoute.js";
 import productsURoute from "./routes/productsURoute.js";
 
 // data imports
-import dataProductStat from "./data/testPS.js";
+// import dataProductStat from "./data/testPS.js";
 // import User from "./models/User.js";
 // import {
 //   dataUser,
@@ -25,7 +25,7 @@ import dataProductStat from "./data/testPS.js";
 //   dataAffiliateStat,
 // } from "./data/index.js";
 // import Product from "./models/Product.js";
-import ProductStat from "./models/ProductStat.js";
+// import ProductStat from "./models/ProductStat.js";
 // import Transaction from "./models/Transaction.js";
 // import OverallStat from "./models/OverallStat.js";
 // import AffliateStat from "./models/AffliateStat.js";
@@ -71,7 +71,7 @@ mongoose
 
     // Only add data once
 
-    ProductStat.insertMany(dataProductStat);
+    // ProductStat.insertMany(dataProductStat);
     // User.insertMany(dataUser);
     // Product.insertMany(dataProduct);
     // ProductStat.insertMany(dataProductStat);
