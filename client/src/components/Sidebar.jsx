@@ -203,7 +203,7 @@ const Sidebar = ({
               })}
             </List>
           </Box>
-          <Box position="flex" mt="23rem">
+          <Box position="flex" mt="22rem">
             <Divider variant="middle" />
           </Box>
           <Box position="absolute" bottom="2rem">
