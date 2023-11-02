@@ -24,6 +24,9 @@ const Suppliers = () => {
     sort: JSON.stringify(sort),
     search,
   });
+
+  const numberOfSuppliers = data ? data.suppliers.length : 0;
+
   const columns = [
     {
       // to edit createdAt on mongo?
@@ -58,7 +61,11 @@ const Suppliers = () => {
   // console.log(("suppliers", data));
   return (
     <Box m="1.5rem 2.5rem">
-      <Header title="SUPPLIERS" subtitle="Entire list of suppliers" />
+      <Header
+        title="SUPPLIERS"
+        subtitle={`No of Supplier: ${numberOfSuppliers}`}
+      />
+      <br />
       <Box
         height="80vh"
         sx={{

@@ -9,7 +9,9 @@ import clientRoutes from "./routes/client.js";
 import generalRoutes from "./routes/general.js";
 import managementRoutes from "./routes/management.js";
 import salesRoutes from "./routes/sales.js";
-import userRoute from "./routes/userRoute.js";
+import userRoute from "./routes/productStatsURoute.js";
+import suppliersURoute from "./routes/suppliersURoute.js";
+import productsURoute from "./routes/productsURoute.js";
 
 // data imports
 import dataProductStat from "./data/testPS.js";
@@ -23,7 +25,7 @@ import dataProductStat from "./data/testPS.js";
 //   dataAffiliateStat,
 // } from "./data/index.js";
 // import Product from "./models/Product.js";
-// import ProductStat from "./models/ProductStat.js";
+import ProductStat from "./models/ProductStat.js";
 // import Transaction from "./models/Transaction.js";
 // import OverallStat from "./models/OverallStat.js";
 // import AffliateStat from "./models/AffliateStat.js";
@@ -54,6 +56,8 @@ app.get("*", (req, res) => {
 
 // FILE UPLOAD
 app.use("/", userRoute);
+app.use("/", suppliersURoute);
+app.use("/", productsURoute);
 
 // MONGOOSE SETUP
 const PORT = process.env.PORT || 9000;
@@ -66,7 +70,8 @@ mongoose
     app.listen(PORT, () => console.log(`Server Port: ${PORT}`));
 
     // Only add data once
-    // ProductStat.insertMany(dataProductStat);
+
+    ProductStat.insertMany(dataProductStat);
     // User.insertMany(dataUser);
     // Product.insertMany(dataProduct);
     // ProductStat.insertMany(dataProductStat);

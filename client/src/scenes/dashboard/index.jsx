@@ -27,6 +27,9 @@ const Dashboard = () => {
   const isNonMediumScreens = useMediaQuery("(min-width: 1200px)");
   const { data, isLoading } = useGetDashboardQuery();
 
+  const currentDate = new Date();
+  const formattedDate = currentDate.toLocaleString();
+
   const columns = [
     {
       // to edit createdAt on mongo?
@@ -54,7 +57,7 @@ const Dashboard = () => {
   return (
     <Box m="1.5rem 2.5rem">
       <FlexBetween>
-        <Header title="DASHBOARD" subtitle="Welcome to your dashboard" />
+        <Header title="AT A GLANCE" subtitle={`as of ${formattedDate}`} />
 
         {/* <Box>
           <Button
@@ -94,7 +97,7 @@ const Dashboard = () => {
           }}
         >
           <Typography variant="h6" sx={{ color: theme.palette.secondary[100] }}>
-            Sales By Category
+            Products By Category
           </Typography>
           <BreakdownChart isDashboard={true} />
           <Typography
@@ -102,8 +105,7 @@ const Dashboard = () => {
             fontSize="0.8rem"
             sx={{ color: theme.palette.secondary[200] }}
           >
-            Breakdown of real states and information via category for revenue
-            made for this year and total sales.
+            updated as of {formattedDate}
           </Typography>
         </Box>
         {/* <StatBox

@@ -1,25 +1,36 @@
 import React from "react";
 import { ResponsivePie } from "@nivo/pie";
 import { Box, Typography, useTheme } from "@mui/material";
-import { useGetSalesQuery } from "state/api";
+
+import { useGetProductsQuery } from "state/api";
 
 const BreakdownChart = ({ isDashboard = false }) => {
-  const { data, isLoading } = useGetSalesQuery();
+  const { data, isLoading } = useGetProductsQuery();
   const theme = useTheme();
 
   if (!data || isLoading) return "Loading...";
 
   const colors = [
     theme.palette.secondary[500],
-    theme.palette.secondary[300],
+    theme.palette.secondary[700],
     theme.palette.secondary[300],
     theme.palette.secondary[500],
   ];
-  const formattedData = Object.entries(data.salesByCategory).map(
-    ([category, sales], i) => ({
+  // Structure data to show product count by SupplierCategory
+  const productCountByCategory = data.reduce((acc, product) => {
+    const category = product.SupplierCategory;
+
+    acc[category] = (acc[category] || 0) + 1;
+
+    return acc;
+  }, {});
+
+  // Convert data to match the chart's expected format
+  const formattedData = Object.entries(productCountByCategory).map(
+    ([category, count], i) => ({
       id: category,
       label: category,
-      value: sales,
+      value: count,
       color: colors[i],
     })
   );
@@ -88,7 +99,7 @@ const BreakdownChart = ({ isDashboard = false }) => {
         arcLabelsSkipAngle={10}
         arcLabelsTextColor={{
           from: "color",
-          modifiers: [["darker", 2]],
+          modifiers: [["darker", 3]],
         }}
         legends={[
           {
@@ -129,9 +140,14 @@ const BreakdownChart = ({ isDashboard = false }) => {
             : "translate(-50%, -100%)",
         }}
       >
-        <Typography variant="h6">
-          {!isDashboard && "Total:"} ${data.yearlySalesTotal}
-        </Typography>
+        {/* <Typography variant="h6">
+          <br />
+          {!isDashboard && "Total Product:"} <br />
+          {Object.values(productCountByCategory).reduce(
+            (acc, count) => acc + count,
+            0
+          )}
+        </Typography> */}
       </Box>
     </Box>
   );

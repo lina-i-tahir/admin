@@ -1,13 +1,10 @@
 import mongoose from "mongoose";
 
-const SupplierSchema = new mongoose.Schema(
-  {
-    SupplierID: String,
-    Name: String,
-    Category: String,
-  },
-  { timestamps: true }
-);
+const SupplierSchema = new mongoose.Schema({
+  SupplierID: String,
+  Name: String,
+  Category: String,
+});
 
 const Supplier = mongoose.model("Supplier", SupplierSchema);
 export default Supplier;
