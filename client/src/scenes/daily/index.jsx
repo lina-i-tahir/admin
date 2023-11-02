@@ -227,7 +227,7 @@ const Daily = ({ ProductID }) => {
 
       data: chartData.map((entry) => ({
         x: entry.date,
-        y: entry.totalSales,
+        y: entry.totalPurchase,
       })),
     },
     {
