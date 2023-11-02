@@ -45,31 +45,6 @@ export const deleteProduct = async (req, res) => {
   }
 };
 
-// // updateProduct
-// export const updateProduct = async (req, res) => {
-//   const productId = req.params.id;
-//   const updatedData = req.body;
-
-//   try {
-//     const product = await Product.findById(productId);
-
-//     if (!product) {
-//       return res.status(404).json({ message: "Product not found" });
-//     }
-
-//     // Update the product fields
-//     Object.assign(product, updatedData);
-
-//     await product.save();
-
-//     res.status(200).json({ message: "Product updated successfully" });
-//   } catch (error) {
-//     res
-//       .status(500)
-//       .json({ message: "Error updating the product", error: error.message });
-//   }
-// };
-
 export const getProductsStat = async (req, res) => {
   try {
     const productStats = await ProductStat.find();
