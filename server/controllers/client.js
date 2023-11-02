@@ -11,50 +11,40 @@ export const getProducts = async (req, res) => {
     res.status(404).json({ message: error.message });
   }
 };
-
-// updateProduct
-export const updateProduct = async (req, res) => {
-  const productId = req.params.id;
-  const updatedData = req.body;
-
+export const saveProduct = async (req, res) => {
   try {
-    const product = await Product.findById(productId);
-
-    if (!product) {
-      return res.status(404).json({ message: "Product not found" });
-    }
-
-    // Update the product fields
-    Object.assign(product, updatedData);
-
-    await product.save();
-
-    res.status(200).json({ message: "Product updated successfully" });
+    const products = req.body;
+    Product.create({ product });
+    console.log("product saved");
+    res.status(200).json(products);
   } catch (error) {
-    res
-      .status(500)
-      .json({ message: "Error updating the product", error: error.message });
+    console.log(err);
+    res.status(404).json({ message: error.message });
+  }
+};
+export const updateProduct = async (req, res) => {
+  try {
+    const { id } = req.params;
+    Product.findByIdAndUpdate(id, { product });
+    console.log("product updated");
+    res.status(200).json(products);
+  } catch (error) {
+    console.log(err);
+    res.status(404).json({ message: error.message });
+  }
+};
+export const deleteProduct = async (req, res) => {
+  try {
+    const { id } = req.params;
+    Product.findByIdAndDelete(id);
+    console.log("product deleted");
+    res.status(200).json(products);
+  } catch (error) {
+    console.log(err);
+    res.status(404).json({ message: error.message });
   }
 };
 
-// export const getProductsStat = async (req, res) => {
-//   try {
-//     const productID = req.params.productID; // Extract the ProductID from the request parameters
-
-//     const productStats = await ProductStat.find({ ProductID: productID }); // Fetch statistics for the specified ProductID
-
-//     if (!productStats || productStats.length === 0) {
-//       return res.status(404).json({ message: "Product statistics not found" });
-//     }
-
-//     res.status(200).json(productStats);
-//   } catch (error) {
-//     res.status(500).json({
-//       message: "Error fetching product statistics",
-//       error: error.message,
-//     });
-//   }
-// };
 export const getProductsStat = async (req, res) => {
   try {
     const productStats = await ProductStat.find();

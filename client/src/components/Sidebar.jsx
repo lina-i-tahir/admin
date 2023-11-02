@@ -204,6 +204,7 @@ const Sidebar = ({
             </List>
           </Box>
 
+
           <Box position="absolute" bottom="2rem" justifyContent="center">
             <Box>
               <Divider
@@ -216,6 +217,7 @@ const Sidebar = ({
               gap="1rem"
               m="1.5rem 4.8rem 0 3rem"
             >
+
               <Box
                 component="img"
                 alt="profile"

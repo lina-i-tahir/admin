@@ -82,6 +82,7 @@ export const getProdCsv = async (req, res) => {
     res.status(404).json({ message: error.message });
   }
 };
+
 export const getProdStatsCsv = async (req, res) => {
   try {
     const productStatsUData = [];
@@ -118,29 +119,3 @@ export const getProdStatsCsv = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
-// csv()
-//       .fromFile(req.file.path)
-//       .then(async (csvData) => {
-//         csvData.forEach((row) => {
-//           // Assuming 'monthlyData' and 'dailyData' are arrays
-//           const monthlyData = { month: row.month, totalSales: row.totalSales, totalUnits: row.totalUnits };
-//           const dailyData = { date: row.date, totalSales: row.totalSales, totalUnits: row.totalUnits };
-
-//           productStatsUData.push({
-//             ProductID: row.ProductID,
-//             YearlyMTDTotalSales: row.YearlyMTDTotalSales,
-//             YearlyMTDTotalUnits: row.YearlyMTDTotalUnits,
-//             year: row.year,
-//             monthlyData: [monthlyData], // Push the monthly data to an array
-//             dailyData: [dailyData], // Push the daily data to an array
-//           });
-//         });
-//   await Product.insertMany(productStatsUData);
-// });
-
-//////////
-//     res.status(200).json({ message: "productStats CSV imported" });
-//   } catch (error) {
-//     res.status(404).json({ message: error.message });
-//   }
-// };
