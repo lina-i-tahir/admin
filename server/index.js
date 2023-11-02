@@ -55,8 +55,12 @@ app.get("*", (req, res) => {
 });
 
 // FILE UPLOAD
+
 app.use("/", userRoute);
 app.use("/", suppliersURoute);
+// app.post("/uploadSupp", upload.single("file"), (req, res) => {
+//   console.log(req.file);
+// });
 app.use("/", productsURoute);
 
 // MONGOOSE SETUP
