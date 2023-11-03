@@ -15,8 +15,49 @@ import {
 } from "@mui/material";
 import { useTheme } from "@emotion/react";
 import FlexBetween from "components/FlexBetween";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const UploadCsv = ({ isDashboard = false }) => {
+  // Toastify
+  const notify = () => {
+    toast.success("CSV successfully uploaded", {
+      position: "top-center",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+  };
+  const error = () => {
+    toast.error("No CSV was attached", {
+      position: "top-center",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+  };
+
+  const template = () => {
+    toast.info("template downloaded", {
+      position: "top-center",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+  };
+
   const theme = useTheme();
   const isNonMediumScreens = useMediaQuery("(min-width: 1200px)");
   const [file, setFile] = useState(null);
@@ -33,24 +74,43 @@ const UploadCsv = ({ isDashboard = false }) => {
     e.preventDefault();
     let formData = new FormData();
     formData.append("file", file);
-
-    const response = await fetch("http://localhost:5001/importSuppliers", {
-      method: "POST",
-      body: formData,
-    });
-    if (response) console.log("supplier CSV imported");
+    try {
+      const response = await fetch("http://localhost:5001/importSuppliers", {
+        method: "POST",
+        body: formData,
+      });
+      if (response.ok) {
+        notify();
+        console.log("supplier CSV imported");
+      } else {
+        error();
+        console.error("File upload failed");
+      }
+    } catch (error) {
+      console.error("File upload failed:", error);
+    }
   };
 
   const handleUploadProduct = async (e) => {
     e.preventDefault();
     let formData = new FormData();
     formData.append("file", file);
+    try {
+      const response = await fetch("http://localhost:5001/importProducts", {
+        method: "POST",
+        body: formData,
+      });
 
-    const response = await fetch("http://localhost:5001/importProducts", {
-      method: "POST",
-      body: formData,
-    });
-    if (response) console.log("product CSV imported");
+      if (response.ok) {
+        notify();
+        console.log("product CSV imported");
+      } else {
+        error();
+        console.error("File upload failed");
+      }
+    } catch (error) {
+      console.error("File upload failed:", error);
+    }
   };
 
   const handleDownload = (url) => {
@@ -62,13 +122,14 @@ const UploadCsv = ({ isDashboard = false }) => {
     document.body.appendChild(aTag);
     aTag.click();
     aTag.remove();
+    template();
   };
 
   return (
     <Box m="1.5rem 2.5rem">
       {!isDashboard && <Header title="UPLOAD" subtitle="By CSV" />}
       <Box
-        mt={isDashboard ? "0px " : "20px"}
+        mt="0px"
         height={isDashboard ? "600px" : "75vh"}
         width={undefined}
         minwidth={isDashboard ? "325px" : undefined}
@@ -174,6 +235,18 @@ const UploadCsv = ({ isDashboard = false }) => {
                     }}
                     onClick={handleUploadSupplier}
                   >
+                    <ToastContainer
+                      position="top-center"
+                      autoClose={2000}
+                      hideProgressBar={false}
+                      newestOnTop={false}
+                      closeOnClick
+                      rtl={false}
+                      pauseOnFocusLoss
+                      draggable
+                      pauseOnHover
+                      theme="dark"
+                    />
                     Upload
                   </Button>
                 </FlexBetween>

@@ -9,6 +9,7 @@ import {
   Box,
   Card,
   CardContent,
+  Container,
 } from "@mui/material";
 import { useTheme } from "@emotion/react";
 
@@ -23,103 +24,141 @@ const UploadForm = () => {
         <Header title="UPLOAD" subtitle="By Form" />
 
         {/* MANUAL UPLOAD */}
-        <Card
-          sx={{
-            mt: "20px",
-            backgroundImage: "none",
-            backgroundColor: theme.palette.background.alt,
-            borderRadius: "0.55rem",
-            boxShadow: "0.15rem 0.2rem 0.15rem 0.1rem rgba(0,0,0, .8)",
-          }}
-        >
-          <CardContent>
-            <br />
-            <Box
-              component="form"
-              // onSubmit={handleProductFormSubmit}
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                width: "80%",
-              }}
-            >
-              <TextField
-                id="productName"
-                label="Name"
-                variant="filled"
-                color="secondary"
-                defaultValue=""
-                autoComplete="off"
+        <Container maxWidth="sm">
+          <Card
+            sx={{
+              mt: "20px",
+              backgroundImage: "none",
+              backgroundColor: theme.palette.background.alt,
+              borderRadius: "0.55rem",
+              boxShadow: "0.15rem 0.2rem 0.15rem 0.1rem rgba(0,0,0, .8)",
+              justifyContent: "center",
+              maxWidth: "700px",
+            }}
+          >
+            <CardContent>
+              <br />
+              <Box
+                component="form"
+                onSubmit={() => {}}
                 sx={{
-                  marginBottom: "20px",
-                }}
-              />
-
-              <TextField
-                id="productPrice"
-                label="Price"
-                variant="filled"
-                color="secondary"
-                defaultValue=""
-                autoComplete="off"
-                sx={{
-                  marginBottom: "20px",
-                  marginTop: "20px",
-                }}
-              />
-              <TextField
-                id="productQuantity"
-                label="Quantity"
-                variant="filled"
-                color="secondary"
-                defaultValue=""
-                autoComplete="off"
-                sx={{
-                  marginBottom: "20px",
-                }}
-              />
-              <TextField
-                id="productCategory"
-                label="Category"
-                variant="filled"
-                color="secondary"
-                defaultValue=""
-                autoComplete="off"
-                sx={{
-                  marginBottom: "20px",
-                }}
-              />
-              <TextField
-                id="productDescription"
-                label="Description"
-                variant="filled"
-                color="secondary"
-                defaultValue=""
-                autoComplete="off"
-                sx={{
-                  marginBottom: "20px",
-                }}
-              />
-              <Button
-                type="submit"
-                variant="contained"
-                sx={{
-                  backgroundColor: theme.palette.secondary[500],
-                  color: theme.palette.primary[600],
-                  marginTop: "20px",
-                  "&:hover": {
-                    backgroundColor: "#e4dccd",
-                    color: "#75695a",
-                    opacity: [0.9, 0.8, 0.7],
-                  },
-                  boxShadow: "0.15rem 0.2rem 0.15rem 0.1rem rgba(0,0,0, .3)",
+                  display: "flex",
+                  flexDirection: "column",
+                  width: "100%",
                 }}
               >
-                Add Product
-              </Button>
-            </Box>
-          </CardContent>
-        </Card>
+                <TextField
+                  id="ProductID"
+                  label="ProductID"
+                  variant="filled"
+                  color="secondary"
+                  defaultValue=""
+                  autoComplete="off"
+                  sx={{
+                    marginBottom: "20px",
+                  }}
+                />
+
+                <TextField
+                  id="SupplierID"
+                  label="SupplierID"
+                  variant="filled"
+                  color="secondary"
+                  defaultValue=""
+                  autoComplete="off"
+                  sx={{
+                    marginBottom: "20px",
+                    marginTop: "20px",
+                  }}
+                />
+                <TextField
+                  id="productCategory"
+                  label="Category"
+                  variant="filled"
+                  color="secondary"
+                  defaultValue=""
+                  autoComplete="off"
+                  sx={{
+                    marginBottom: "20px",
+                  }}
+                />
+                <TextField
+                  id="Brand"
+                  label="Brand"
+                  variant="filled"
+                  color="secondary"
+                  defaultValue=""
+                  autoComplete="off"
+                  sx={{
+                    marginBottom: "20px",
+                  }}
+                />
+
+                <TextField
+                  id="Description"
+                  label="Description"
+                  variant="filled"
+                  color="secondary"
+                  defaultValue=""
+                  autoComplete="off"
+                  sx={{
+                    marginBottom: "20px",
+                  }}
+                />
+                <TextField
+                  id="UnitOfMeasurement"
+                  label="Unit Of Measurement"
+                  variant="filled"
+                  color="secondary"
+                  defaultValue=""
+                  autoComplete="off"
+                  sx={{
+                    marginBottom: "20px",
+                  }}
+                />
+                <TextField
+                  id="ItemPrice"
+                  label="Item Price"
+                  variant="filled"
+                  color="secondary"
+                  defaultValue=""
+                  autoComplete="off"
+                  sx={{
+                    marginBottom: "20px",
+                  }}
+                />
+                <TextField
+                  id="UnitPrice"
+                  label="Unit Price"
+                  variant="filled"
+                  color="secondary"
+                  defaultValue=""
+                  autoComplete="off"
+                  sx={{
+                    marginBottom: "20px",
+                  }}
+                />
+                <Button
+                  type="submit"
+                  variant="contained"
+                  sx={{
+                    backgroundColor: theme.palette.secondary[500],
+                    color: theme.palette.primary[600],
+                    marginTop: "20px",
+                    "&:hover": {
+                      backgroundColor: "#e4dccd",
+                      color: "#75695a",
+                      opacity: [0.9, 0.8, 0.7],
+                    },
+                    boxShadow: "0.15rem 0.2rem 0.15rem 0.1rem rgba(0,0,0, .3)",
+                  }}
+                >
+                  Add Product
+                </Button>
+              </Box>
+            </CardContent>
+          </Card>
+        </Container>
       </Box>
     </>
   );
