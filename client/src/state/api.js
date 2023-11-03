@@ -20,15 +20,6 @@ export const api = createApi({
       providesTags: ["User"],
     }),
 
-    // getProducts: build.query({
-    //   query: ({ page, pageSize, sort, search }) => ({
-    //     url: "client/products",
-    //     method: "GET",
-    //     params: { page, pageSize, sort, search },
-    //   }),
-    //   providesTags: ["Products"],
-    // }),
-
     getProducts: build.query({
       query: () => "client/products",
       providesTags: ["Products"],
@@ -68,8 +59,6 @@ export const api = createApi({
 });
 
 export const {
-  // useGetUserByEmailQuery,
-
   useGetUserQuery,
   useGetProductsQuery,
   useGetProductStatsQuery,

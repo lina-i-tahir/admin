@@ -16,10 +16,11 @@ import {
 import { useTheme } from "@emotion/react";
 import FlexBetween from "components/FlexBetween";
 
-const UploadCsv = () => {
+const UploadCsv = ({ isDashboard = false }) => {
   const theme = useTheme();
   const isNonMediumScreens = useMediaQuery("(min-width: 1200px)");
   const [file, setFile] = useState(null);
+  const boxHeight = isDashboard ? "4.5rem" : "7rem";
 
   const TEMPLATE_SUPPLIER_URL = "http://localhost:3000/Template_Supplier.csv";
   const TEMPLATE_PRODUCT_URL = "http://localhost:3000/Template_Product.csv";
@@ -65,10 +66,13 @@ const UploadCsv = () => {
 
   return (
     <Box m="1.5rem 2.5rem">
-      <Header title="UPLOAD" subtitle="By CSV" />
+      {!isDashboard && <Header title="UPLOAD" subtitle="By CSV" />}
       <Box
-        mt="20px"
-        display="grid"
+        mt={isDashboard ? "0px " : "20px"}
+        height={isDashboard ? "600px" : "75vh"}
+        width={undefined}
+        minwidth={isDashboard ? "325px" : undefined}
+        display={isDashboard ? "block" : "grid"}
         gridTemplateColumns="repeat(12, 1fr)"
         gridAutoRows="120px"
         gap="20px"
@@ -96,7 +100,7 @@ const UploadCsv = () => {
               <Box
                 sx={{
                   mt: "20px",
-                  height: "7rem",
+                  height: boxHeight,
                   backgroundImage: "none",
                   backgroundColor: "transparent",
                   borderRadius: "0.55rem",
@@ -198,7 +202,7 @@ const UploadCsv = () => {
               <Box
                 sx={{
                   mt: "20px",
-                  height: "7rem",
+                  height: boxHeight,
                   backgroundImage: "none",
                   backgroundColor: "transparent",
                   borderRadius: "0.55rem",
