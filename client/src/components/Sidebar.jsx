@@ -19,14 +19,14 @@ import {
   HomeOutlined,
   ShoppingCartOutlined,
   Groups2Outlined,
-  ReceiptLongOutlined,
-  PublicOutlined,
-  PointOfSaleOutlined,
-  TodayOutlined,
-  CalendarMonthOutlined,
-  AdminPanelSettingsOutlined,
-  TrendingUpOutlined,
-  PieChartOutlined,
+  // ReceiptLongOutlined,
+  // PublicOutlined,
+  // PointOfSaleOutlined,
+  // TodayOutlined,
+  // CalendarMonthOutlined,
+  // AdminPanelSettingsOutlined,
+  // TrendingUpOutlined,
+  // PieChartOutlined,
 } from "@mui/icons-material";
 import FileUploadOutlinedIcon from "@mui/icons-material/FileUploadOutlined";
 import SpaceDashboardIcon from "@mui/icons-material/SpaceDashboard";
@@ -51,37 +51,13 @@ const navItems = [
   },
 
   {
-    text: "Upload",
+    text: "Upload Form",
     icon: <FileUploadOutlinedIcon />,
   },
-  // {
-  //   text: "Overview",
-  //   icon: <PointOfSaleOutlined />,
-  // },
-  // {
-  //   text: "Daily",
-  //   icon: <TodayOutlined />,
-  // },
-  // {
-  //   text: "Monthly",
-  //   icon: <CalendarMonthOutlined />,
-  // },
-  // {
-  //   text: "Breakdown",
-  //   icon: <PieChartOutlined />,
-  // },
-  // {
-  //   text: "Management",
-  //   icon: null,
-  // },
-  // {
-  //   text: "Admin",
-  //   icon: <AdminPanelSettingsOutlined />,
-  // },
-  // {
-  //   text: "Performance",
-  //   icon: <TrendingUpOutlined />,
-  // },
+  {
+    text: "Upload Csv",
+    icon: <FileUploadOutlinedIcon />,
+  },
 ];
 const Sidebar = ({
   user,
@@ -204,7 +180,6 @@ const Sidebar = ({
             </List>
           </Box>
 
-
           <Box position="absolute" bottom="2rem" justifyContent="center">
             <Box>
               <Divider
@@ -217,7 +192,6 @@ const Sidebar = ({
               gap="1rem"
               m="1.5rem 4.8rem 0 3rem"
             >
-
               <Box
                 component="img"
                 alt="profile"

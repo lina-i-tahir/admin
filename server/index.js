@@ -55,7 +55,6 @@ app.get("*", (req, res) => {
 });
 
 // FILE UPLOAD
-
 app.use("/", userRoute);
 app.use("/", suppliersURoute);
 // app.post("/uploadSupp", upload.single("file"), (req, res) => {
