@@ -2,13 +2,14 @@ import React from "react";
 import FlexBetween from "components/FlexBetween";
 import Header from "components/Header";
 import {
-  DownloadOutlined,
   CategoryOutlined,
+  FileUploadOutlined,
   ShoppingCartOutlined,
-  PointOfSale,
-  PersonAdd,
-  Traffic,
+  // PointOfSale,
+  // PersonAdd,
+  // Traffic,
 } from "@mui/icons-material";
+import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import {
   Box,
   Button,
@@ -23,6 +24,7 @@ import { useGetDashboardQuery } from "state/api";
 import { useGetProductsQuery } from "state/api";
 import StatBox from "components/StatBox";
 import Products from "scenes/products";
+import UploadCsv from "scenes/uploadCsv";
 
 const Dashboard = () => {
   const theme = useTheme();
@@ -35,30 +37,6 @@ const Dashboard = () => {
   const currentDate = new Date();
   const formattedDate = currentDate.toLocaleString();
   const numberOfProducts = productData ? productData.length : 0;
-
-  // const columns = [
-  //   {
-  //     // to edit createdAt on mongo?
-  //     field: "Name",
-  //     headerName: "Name",
-  //     flex: 1,
-  //   },
-  //   {
-  //     field: "SupplierID",
-  //     headerName: "Supplier ID",
-  //     flex: 0.5,
-  //   },
-  //   {
-  //     field: "Category",
-  //     headerName: "Category",
-  //     flex: 1,
-  //   },
-  //   {
-  //     field: "_id",
-  //     headerName: "ID",
-  //     flex: 1,
-  //   },
-  // ];
 
   return (
     <Box m="1.5rem 2.5rem">
@@ -93,9 +71,9 @@ const Dashboard = () => {
               variant="h5"
               sx={{ color: theme.palette.secondary[100] }}
             >
-              Products By Category
+              Upload Csv
             </Typography>
-            <CategoryOutlined
+            <FileUploadOutlined
               sx={{ color: theme.palette.secondary[300], fontSize: "26px" }}
             />
           </FlexBetween>
@@ -106,9 +84,9 @@ const Dashboard = () => {
               marginTop: "20px",
             }}
           >
-            <BreakdownChart isDashboard={true} />
+            <UploadCsv isDashboard={true} />
           </Box>
-          <Box>
+          {/* <Box>
             <Typography
               variant="h6"
               mt="13px"
@@ -118,7 +96,7 @@ const Dashboard = () => {
             >
               as of {formattedDate}
             </Typography>
-          </Box>
+          </Box> */}
         </Box>
 
         <Box
@@ -161,6 +139,46 @@ const Dashboard = () => {
           }
         />
       </Box>
+
+      {/* <Box
+        gridColumn="span 4"
+        gridRow="span 3"
+        backgroundColor={theme.palette.background.alt}
+        p="1.5rem"
+        sx={{
+          borderRadius: "0.5rem",
+          boxShadow: "0.15rem 0.2rem 0.15rem 0.1rem rgba(0,0,0, .8)",
+        }}
+      >
+        <FlexBetween>
+          <Typography variant="h5" sx={{ color: theme.palette.secondary[100] }}>
+            Products By Category
+          </Typography>
+          <CategoryOutlined
+            sx={{ color: theme.palette.secondary[300], fontSize: "26px" }}
+          />
+        </FlexBetween>
+        <Box
+          sx={{
+            justifyContent: "center",
+            width: "100%",
+            marginTop: "20px",
+          }}
+        >
+          <BreakdownChart isDashboard={true} />
+        </Box>
+        <Box>
+          <Typography
+            variant="h6"
+            mt="13px"
+            display="flex"
+            justifyContent="right"
+            sx={{ color: theme.palette.secondary[300] }}
+          >
+            as of {formattedDate}
+          </Typography>
+        </Box>
+      </Box> */}
 
       {/* end of Row 1 */}
       {/* <StatBox

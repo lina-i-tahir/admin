@@ -13,7 +13,7 @@ import {
   useTheme,
 } from "@mui/material";
 import {
-  SettingsOutlined,
+  // SettingsOutlined,
   ChevronLeft,
   ChevronRightOutlined,
   HomeOutlined,

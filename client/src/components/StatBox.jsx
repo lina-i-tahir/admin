@@ -3,7 +3,7 @@ import { Box, Typography, useTheme } from "@mui/material";
 import FlexBetween from "./FlexBetween";
 import { BackHand, ThreeMp } from "@mui/icons-material";
 
-const StatBox = ({ title, value, increase, icon, description }) => {
+const StatBox = ({ title, value, amount, icon, description }) => {
   const theme = useTheme();
   const currentDate = new Date();
   const formattedDate = currentDate.toLocaleString();
@@ -44,7 +44,7 @@ const StatBox = ({ title, value, increase, icon, description }) => {
           fontStyle="italic"
           sx={{ color: theme.palette.secondary.light }}
         >
-          {increase}
+          {amount}
         </Typography>
 
         <Typography variant="h6" color={theme.palette.secondary[300]}>
