@@ -49,7 +49,6 @@ const navItems = [
     text: "Suppliers",
     icon: <Groups2Outlined />,
   },
-
   {
     text: "Upload Form",
     icon: <FileUploadOutlinedIcon />,
