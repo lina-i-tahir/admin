@@ -30,6 +30,10 @@ const Login = () => {
   const navigate = useNavigate();
   const isNonMobile = useMediaQuery("(min-width: 1000px");
 
+  const handleButtonClick = () => {
+    navigate("/dashboard");
+  };
+
   // const notify = () => toast("This is a toast notification !");
 
   return (
@@ -93,7 +97,7 @@ const Login = () => {
               </GoogleOAuthProvider>
               <p></p>
 
-              <Button variant="text" size="small" href="/dashboard">
+              <Button variant="text" size="small" onClick={handleButtonClick}>
                 Test account
               </Button>
             </Container>
