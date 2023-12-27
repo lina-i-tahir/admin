@@ -91,6 +91,11 @@ const Login = () => {
                   }}
                 />
               </GoogleOAuthProvider>
+              <p></p>
+
+              <Button variant="text" size="small" href="/dashboard">
+                Test account
+              </Button>
             </Container>
           </CardContent>
         </Card>
